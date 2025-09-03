@@ -1,0 +1,169 @@
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  background-color: #e0e0e0;
+}
+
+.sidebar li.active {
+  background-color: #d0d0d0;
+  font-weight: bold;
+}
+
+
+.detail {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.detail table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* sütun genişliklerinin düzgün uygulanması için */
+  margin-top: 20px;
+}
+
+.detail th, .detail td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail th {
+  background-color: #f2f2f2;
+}
+
+.pagination-controls {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.pagination-controls button {
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-header h2 {
+  margin: 0;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.pagination-controls button {
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.detail table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed; /* GEREKLİ: % genişliklerin çalışması için */
+}
+
+.detail th,
+.detail td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Yüzdelik genişlikler */
+.detail th:nth-child(1),
+.detail td:nth-child(1) { width: 10%; }
+
+.detail th:nth-child(2),
+.detail td:nth-child(2) { width: 10%; }
+
+.detail th:nth-child(3),
+.detail td:nth-child(3) { width: 10%; }
+
+.detail th:nth-child(4),
+.detail td:nth-child(4) { width: 10%; }
+
+.detail th:nth-child(5),
+.detail td:nth-child(5) { width: 10%; }
+
+/* Kelime (son sütun) */
+.detail th:nth-child(6),
+.detail td:nth-child(6) { width: 50%; }
+
+.detail table {
+  display: block;
+  overflow-x: auto;
+}
+
+.kok-detail {
+  padding: 20px;
+}
+
+.ayet-blok {
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.ayet-baslik {
+  width: 15%;
+  font-size: 18px;
+}
+
+.ayet-meal {
+  width: 55%;
+  font-size: 15px;
+}
+
+.ayet-arapca {
+  width: 30%;
+  text-align: right;
+  font-size: 22px;
+  direction: rtl;
+}
+
+.arapca-yazi {
+  font-size: 24px;
+  font-family: 'Scheherazade', serif; /* Eğer özel font yüklüyse */
+}

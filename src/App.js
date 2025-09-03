@@ -1,24 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Sidebar from './components/Sidebar';
+import Detail from './components/Detail';
+import KokDetail from './components/KokDetail'; // 👈 yeni sayfa
+
+import { fetchSureList, fetchSureDetail } from './services/sureService';
+import './styles.css';
 
 function App() {
+  const [sureler, setSureler] = useState([]);
+  const [selectedSureNo, setSelectedSureNo] = useState(null);
+  const [fullSureData, setFullSureData] = useState([]);
+  const [currentAyetNo, setCurrentAyetNo] = useState(1);
+
+  useEffect(() => {
+    async function loadSureler() {
+      const data = await fetchSureList();
+      setSureler(data);
+    }
+
+    loadSureler();
+  }, []);
+
+  useEffect(() => {
+    async function loadDetail() {
+      if (selectedSureNo != null) {
+        const detail = await fetchSureDetail(selectedSureNo);
+        setFullSureData(detail);
+        setCurrentAyetNo(1);
+      }
+    }
+
+    loadDetail();
+  }, [selectedSureNo]);
+
+  const filteredData = fullSureData.filter(item => parseInt(item.ayetNo) === currentAyetNo);
+  const maxAyetNo = Math.max(...fullSureData.map(item => parseInt(item.ayetNo)), 0); // max fallback
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container">
+        <Sidebar
+          sureler={sureler}
+          onSureClick={setSelectedSureNo}
+          selectedId={selectedSureNo}
+        />
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Detail
+                detail={filteredData}
+                currentAyetNo={currentAyetNo}
+                setCurrentAyetNo={setCurrentAyetNo}
+                maxAyetNo={maxAyetNo}
+              />
+            }
+          />
+
+          <Route path="/kok/:kok" element={<KokDetail />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
