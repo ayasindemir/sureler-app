@@ -13,7 +13,7 @@ export default function Detail({ detail, currentAyetNo, setCurrentAyetNo, maxAye
 
     async function fetchMeal() {
       try {
-        const response = await fetch(`http://localhost:8080/meal/getBySureNoAndAyetNo?sureNo=${sureNo}&ayetNo=${ayetNo}`);
+        const response = await fetch(`https://kurananaliz.onrender.com/meal/getBySureNoAndAyetNo?sureNo=${sureNo}&ayetNo=${ayetNo}`);
         const data = await response.json();
         setMealList(data); // ✅ tüm liste
       } catch (error) {
