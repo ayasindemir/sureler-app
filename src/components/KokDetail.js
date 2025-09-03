@@ -8,7 +8,7 @@ const KokDetail = () => {
   useEffect(() => {
     async function fetchKokData() {
       try {
-        const response = await fetch(`http://localhost:8080/kuran/getByLatinKok?kok=${kok}`);
+        const response = await fetch(`https://kurananaliz.onrender.com/kuran/getByLatinKok?kok=${kok}`);
         const data = await response.json();
         setAyetler(data);
       } catch (error) {
